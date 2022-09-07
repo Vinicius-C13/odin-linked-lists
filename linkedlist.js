@@ -102,18 +102,6 @@ const LinkedList = () => {
             return null
         },
 
-        //to String - print the linked list as a string
-        printList() {
-            let currentNode = this.head;
-
-            if(currentNode === null) console.log(this.head)
-
-            while(currentNode !== null) {
-                console.log(currentNode.value);
-                currentNode = currentNode.link;
-            }
-        },
-
         //Insert at a specific index
         insertAt(value, index) {
             if(index === 0) this.prepend(value);
@@ -142,6 +130,22 @@ const LinkedList = () => {
                 this.at(index-1).link = this.at(index).link;
                 this.length--
             }
+        },
+
+        //to String - print the linked list as a string
+        printList() {
+            let currentNode = this.head;
+
+            if(!currentNode) return console.log('null')
+
+            let listString = ""
+
+            while(currentNode) {
+                listString += `( ${currentNode.value} ) -> `
+                currentNode = currentNode.link;
+            }
+            listString += 'null';
+            console.log(listString);
         }
     }
 }
@@ -149,8 +153,10 @@ const LinkedList = () => {
 const ll = LinkedList();
 
 ll.append(200);
-ll.append(300);
+ll.append(400);
 ll.prepend(100);
+ll.insertAt(300, 2)
+ll.removeAt(3)
 ll.printList();
-
+console.log(ll.size());
 
